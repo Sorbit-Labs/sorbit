@@ -1,15 +1,37 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Topbar.css';
 
 const Topbar = ({ 
   onMenuClick, 
   onThemeToggle, 
   isDarkMode,
-  user 
+  user,
+  showBackButton = false
 }) => {
+  const navigate = useNavigate();
+
+  const handleBackToHome = () => {
+    navigate('/');
+  };
+
   return (
     <header className="topbar">
       <div className="topbar__left">
+        {/* Back to Home Button */}
+        {showBackButton && (
+          <button 
+            className="topbar__back-btn" 
+            onClick={handleBackToHome}
+            aria-label="Back to home"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="m15 18-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span>Home</span>
+          </button>
+        )}
+
         {/* Mobile Menu Button */}
         <button 
           className="topbar__menu-btn" 
@@ -24,7 +46,7 @@ const Topbar = ({
         {/* Logo - Mobile/Tablet */}
         <div className="topbar__logo">
           <img 
-            src="/public/logo.png" 
+            src="/logo.png" 
             alt="SorBit" 
             className="topbar__logo-image"
           />
@@ -50,6 +72,7 @@ const Topbar = ({
           className="topbar__icon-btn" 
           onClick={onThemeToggle}
           aria-label="Toggle theme"
+          title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
