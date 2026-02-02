@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
+  animation: fadeIn 0.5s ease-out;
 }
 
 /* Header */
@@ -14,15 +15,99 @@
 
 .accounts__title {
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extrabold);
   color: var(--text-primary);
   margin: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .accounts__subtitle {
   font-size: var(--font-size-base);
   color: var(--text-secondary);
   margin: var(--spacing-xs) 0 0 0;
+}
+
+.accounts__connect-btn {
+  box-shadow: var(--elevation-3);
+}
+
+/* Overview Cards */
+.accounts__overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.accounts__overview-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--elevation-2);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.accounts__overview-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.accounts__overview-card:hover::before {
+  opacity: 1;
+}
+
+.accounts__overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--elevation-3);
+}
+
+.accounts__overview-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.accounts__overview-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.accounts__overview-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.accounts__overview-value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.accounts__overview-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1;
 }
 
 /* Filters */
@@ -40,64 +125,103 @@
 
 /* List */
 .accounts__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Loading */
+.accounts__loading {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl);
   gap: var(--spacing-md);
 }
 
-.accounts__loading,
+.accounts__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.accounts__loading p {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+/* Empty State */
 .accounts__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-3xl);
+  gap: var(--spacing-lg);
   color: var(--text-tertiary);
 }
 
 .accounts__empty svg {
-  width: 64px;
-  height: 64px;
-  margin-bottom: var(--spacing-md);
+  width: 80px;
+  height: 80px;
+  opacity: 0.5;
 }
 
 .accounts__empty p {
   margin: 0;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
 }
 
 /* Card */
 .accounts__card {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  background: var(--bg-primary);
+  transition: all var(--transition-base);
 }
 
-.accounts__card-content {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xl);
+.accounts__card:hover {
+  border-color: var(--primary);
 }
 
-.accounts__card-main {
+.accounts__card-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-md);
-  min-width: 250px;
 }
 
 .accounts__card-platform {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-secondary);
   flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.accounts__card:hover .accounts__card-platform {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .accounts__card-platform svg {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
 .accounts__card-info {
@@ -106,11 +230,10 @@
 }
 
 .accounts__card-name {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
   margin: 0 0 var(--spacing-xs) 0;
-  line-height: var(--line-height-tight);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -120,13 +243,15 @@
   font-size: var(--font-size-sm);
   color: var(--text-tertiary);
   margin: 0;
-  line-height: var(--line-height-tight);
 }
 
 .accounts__card-stats {
-  display: flex;
-  gap: var(--spacing-xl);
-  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
 }
 
 .accounts__card-stat {
@@ -138,32 +263,27 @@
 .accounts__card-stat-label {
   font-size: var(--font-size-xs);
   color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
   line-height: 1;
 }
 
 .accounts__card-stat-value {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   line-height: 1;
 }
 
 .accounts__card-actions {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--spacing-sm);
-  margin-left: auto;
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .accounts__card-content {
-    flex-wrap: wrap;
-  }
-
-  .accounts__card-stats {
-    width: 100%;
-    gap: var(--spacing-lg);
+  .accounts__list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
@@ -185,6 +305,29 @@
     font-size: var(--font-size-sm);
   }
 
+  .accounts__connect-btn {
+    width: 100%;
+  }
+
+  .accounts__overview {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .accounts__overview-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .accounts__overview-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .accounts__overview-value {
+    font-size: var(--font-size-2xl);
+  }
+
   .accounts__filter-buttons {
     width: 100%;
   }
@@ -194,46 +337,17 @@
   }
 
   .accounts__list {
-    gap: var(--spacing-sm);
-  }
-
-  .accounts__card-content {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
 
-  .accounts__card-main {
-    min-width: auto;
-  }
-
-  .accounts__card-platform {
-    width: 40px;
-    height: 40px;
-  }
-
-  .accounts__card-platform svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .accounts__card-name {
-    font-size: var(--font-size-sm);
-  }
-
-  .accounts__card-type {
-    font-size: var(--font-size-xs);
-  }
-
   .accounts__card-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
 
   .accounts__card-actions {
-    margin-left: 0;
-    justify-content: space-between;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -242,7 +356,34 @@
     font-size: var(--font-size-xl);
   }
 
-  .accounts__card-stats {
-    grid-template-columns: 1fr;
+  .accounts__overview-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .accounts__card-platform {
+    width: 48px;
+    height: 48px;
+  }
+
+  .accounts__card-platform svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .accounts__card-name {
+    font-size: var(--font-size-base);
+  }
+
+  .accounts__card-stat-value {
+    font-size: var(--font-size-lg);
+  }
+
+  .accounts__empty svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .accounts__empty p {
+    font-size: var(--font-size-base);
   }
 }
