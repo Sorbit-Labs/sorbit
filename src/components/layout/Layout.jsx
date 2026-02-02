@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { useTheme } from '../../hooks/useTheme';
@@ -8,6 +8,10 @@ import './Layout.css';
 const Layout = ({ navigationItems, user }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { theme, toggleTheme, isDark } = useTheme();
+  const location = useLocation();
+
+  // Determine if we should show the back button (when inside dashboard)
+  const showBackButton = location.pathname !== '/';
 
   const handleMenuClick = () => {
     setSidebarOpen(!sidebarOpen);
@@ -31,6 +35,7 @@ const Layout = ({ navigationItems, user }) => {
           onThemeToggle={toggleTheme}
           isDarkMode={isDark}
           user={user}
+          showBackButton={showBackButton}
         />
         
         <main className="layout__content">
