@@ -17,7 +17,7 @@ const Sidebar = ({ isOpen, onClose, navigationItems }) => {
         {/* Logo Section */}
         <div className="sidebar__logo">
           <img 
-            src="/src/assets/images/logo.png" 
+            src="/logo.png" 
             alt="SorBit Logo" 
             className="sidebar__logo-image"
           />

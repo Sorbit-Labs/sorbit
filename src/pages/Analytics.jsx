@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
+import Loader from '../components/ui/Loader';
 import { getAnalyticsData } from '../services/api';
 import { formatCurrency, formatNumber, formatPercentage } from '../utils/formatNumber';
 import './Analytics.css';
@@ -33,6 +34,14 @@ const Analytics = () => {
     { value: '90days', label: '90 Days' },
     { value: 'year', label: 'Year' },
   ];
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem' }}>
+        <Loader size="large" text="Loading analytics..." />
+      </div>
+    );
+  }
 
   return (
     <div className="analytics">
@@ -88,9 +97,7 @@ const Analytics = () => {
             </div>
             <div className="analytics__overview-content">
               <span className="analytics__overview-label">Total Revenue</span>
-              <span className="analytics__overview-value">
-                {loading ? '...' : formatCurrency(35820)}
-              </span>
+              <span className="analytics__overview-value">{formatCurrency(35820)}</span>
               <span className="analytics__overview-change analytics__overview-change--positive">
                 +12.5% vs last period
               </span>
@@ -107,9 +114,7 @@ const Analytics = () => {
             </div>
             <div className="analytics__overview-content">
               <span className="analytics__overview-label">Total Clicks</span>
-              <span className="analytics__overview-value">
-                {loading ? '...' : formatNumber(10390)}
-              </span>
+              <span className="analytics__overview-value">{formatNumber(10390)}</span>
               <span className="analytics__overview-change analytics__overview-change--positive">
                 +8.2% vs last period
               </span>
@@ -127,9 +132,7 @@ const Analytics = () => {
             </div>
             <div className="analytics__overview-content">
               <span className="analytics__overview-label">Impressions</span>
-              <span className="analytics__overview-value">
-                {loading ? '...' : formatNumber(362000)}
-              </span>
+              <span className="analytics__overview-value">{formatNumber(362000)}</span>
               <span className="analytics__overview-change analytics__overview-change--positive">
                 +15.3% vs last period
               </span>
@@ -146,9 +149,7 @@ const Analytics = () => {
             </div>
             <div className="analytics__overview-content">
               <span className="analytics__overview-label">Avg. CTR</span>
-              <span className="analytics__overview-value">
-                {loading ? '...' : formatPercentage(2.87)}
-              </span>
+              <span className="analytics__overview-value">{formatPercentage(2.87)}</span>
               <span className="analytics__overview-change analytics__overview-change--negative">
                 -0.3% vs last period
               </span>
@@ -161,60 +162,52 @@ const Analytics = () => {
       <div className="analytics__grid">
         {/* Top Campaigns */}
         <Card title="Top Performing Campaigns" subtitle="Best campaigns by revenue">
-          {loading ? (
-            <div className="analytics__loading">Loading...</div>
-          ) : (
-            <div className="analytics__campaigns">
-              {analytics?.topCampaigns?.map((campaign, index) => (
-                <div key={campaign.id} className="analytics__campaign-item">
-                  <div className="analytics__campaign-rank">#{index + 1}</div>
-                  <div className="analytics__campaign-info">
-                    <span className="analytics__campaign-name">{campaign.name}</span>
-                    <span className="analytics__campaign-platform">
-                      <Badge variant="default" size="small">{campaign.platform}</Badge>
-                    </span>
-                  </div>
-                  <div className="analytics__campaign-stats">
-                    <span className="analytics__campaign-revenue">
-                      {formatCurrency(campaign.revenue)}
-                    </span>
-                    <span className="analytics__campaign-roi">
-                      ROI: {formatPercentage(campaign.roi)}
-                    </span>
-                  </div>
+          <div className="analytics__campaigns">
+            {analytics?.topCampaigns?.map((campaign, index) => (
+              <div key={campaign.id} className="analytics__campaign-item">
+                <div className="analytics__campaign-rank">#{index + 1}</div>
+                <div className="analytics__campaign-info">
+                  <span className="analytics__campaign-name">{campaign.name}</span>
+                  <span className="analytics__campaign-platform">
+                    <Badge variant="default" size="small">{campaign.platform}</Badge>
+                  </span>
                 </div>
-              ))}
-            </div>
-          )}
+                <div className="analytics__campaign-stats">
+                  <span className="analytics__campaign-revenue">
+                    {formatCurrency(campaign.revenue)}
+                  </span>
+                  <span className="analytics__campaign-roi">
+                    ROI: {formatPercentage(campaign.roi)}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </Card>
 
         {/* Platform Breakdown */}
         <Card title="Platform Breakdown" subtitle="Revenue by advertising platform">
-          {loading ? (
-            <div className="analytics__loading">Loading...</div>
-          ) : (
-            <div className="analytics__platforms">
-              {analytics?.platformBreakdown?.map((platform) => (
-                <div key={platform.platform} className="analytics__platform-item">
-                  <div className="analytics__platform-header">
-                    <span className="analytics__platform-name">{platform.platform}</span>
-                    <span className="analytics__platform-percentage">
-                      {formatPercentage(platform.percentage)}
-                    </span>
-                  </div>
-                  <div className="analytics__platform-bar">
-                    <div
-                      className="analytics__platform-fill"
-                      style={{ width: `${platform.percentage}%` }}
-                    ></div>
-                  </div>
-                  <span className="analytics__platform-revenue">
-                    {formatCurrency(platform.revenue)}
+          <div className="analytics__platforms">
+            {analytics?.platformBreakdown?.map((platform) => (
+              <div key={platform.platform} className="analytics__platform-item">
+                <div className="analytics__platform-header">
+                  <span className="analytics__platform-name">{platform.platform}</span>
+                  <span className="analytics__platform-percentage">
+                    {formatPercentage(platform.percentage)}
                   </span>
                 </div>
-              ))}
-            </div>
-          )}
+                <div className="analytics__platform-bar">
+                  <div
+                    className="analytics__platform-fill"
+                    style={{ width: `${platform.percentage}%` }}
+                  ></div>
+                </div>
+                <span className="analytics__platform-revenue">
+                  {formatCurrency(platform.revenue)}
+                </span>
+              </div>
+            ))}
+          </div>
         </Card>
       </div>
 

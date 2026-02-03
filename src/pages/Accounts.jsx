@@ -3,6 +3,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Input from '../components/ui/Input';
+import Loader from '../components/ui/Loader';
 import { getAccounts } from '../services/api';
 import { formatNumber, formatDate } from '../utils/formatNumber';
 import './Accounts.css';
@@ -283,12 +284,9 @@ const Accounts = () => {
       {/* Accounts List */}
       <div className="accounts__list">
         {loading ? (
-          <Card>
-            <div className="accounts__loading">
-              <div className="accounts__spinner"></div>
-              <p>Loading accounts...</p>
-            </div>
-          </Card>
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem' }}>
+            <Loader size="large" text="Loading accounts..." />
+          </div>
         ) : filteredAccounts.length === 0 ? (
           <Card>
             <div className="accounts__empty">
