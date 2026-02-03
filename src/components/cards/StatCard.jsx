@@ -1,4 +1,5 @@
 import React from 'react';
+import Loader from '../ui/Loader';
 import './StatCard.css';
 
 const StatCard = ({ 
@@ -44,9 +45,8 @@ const StatCard = ({
 
       <div className="stat-card__body">
         {loading ? (
-          <div className="stat-card__skeleton">
-            <div className="skeleton skeleton--text"></div>
-            <div className="skeleton skeleton--text skeleton--small"></div>
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+            <Loader size="small" />
           </div>
         ) : (
           <>
