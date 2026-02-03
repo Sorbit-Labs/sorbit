@@ -1,11 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Hero from './components/layout/Hero';
 import Dashboard from './pages/Dashboard';
 import Accounts from './pages/Accounts';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import Loader from './components/ui/Loader';
 
 // Navigation items configuration
 const navigationItems = [
@@ -64,9 +65,20 @@ const mockUser = {
   avatar: null,
 };
 
-function App() {
+// Component to handle route transitions with loader
+function AppRoutes() {
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [location]);
+
   return (
-    <Router>
+    <>
+      {loading && <Loader fullScreen text="Loading..." />}
       <Routes>
         {/* Landing page with Hero */}
         <Route path="/" element={<Hero />} />
@@ -79,6 +91,14 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }
