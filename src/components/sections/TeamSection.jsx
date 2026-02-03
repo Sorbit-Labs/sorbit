@@ -13,17 +13,17 @@ const TeamSection = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'Sarah Johnson',
+      name: 'WSUITS6 - Alhassan Osman Wunpini ',
       role: 'CEO & Founder',
       // 📸 IMAGE LINK: Replace null with your image URL
       // Example: imageUrl: 'https://example.com/sarah.jpg'
       // Or use local: imageUrl: '/images/team/sarah.jpg'
-      imageUrl: null,
-      bio: 'Visionary leader with 10+ years in social media marketing',
+      imageUrl: '/team/wsuits6.png',
+      bio: 'I dont Follow Paths I Burn them then I write my own in code',
       social: {
-        twitter: 'https://twitter.com/sarahjohnson',
-        linkedin: 'https://linkedin.com/in/sarahjohnson',
-        github: null
+        twitter: 'https://twitter.com/wsuits6',
+        linkedin: 'https://linkedin.com/in/wsuits6',
+        github: 'github.com/wsuits6'
       }
     },
     {
