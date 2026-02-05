@@ -10,7 +10,7 @@ const Hero = () => {
   const { theme, toggleTheme, isDark } = useTheme();
 
   const handleConnectAccount = () => {
-    navigate('/dashboard');
+    navigate('/login')
   };
 
   const handleWatchDemo = () => {
