@@ -73,7 +73,7 @@ const TeamSection = () => {
       <div className="team-section__header">
         <h2 className="team-section__title">Meet the Team</h2>
         <p className="team-section__subtitle">
-          The brilliant minds behind SorBit's success
+          The brilliant minds behind SorBit.
         </p>
       </div>
 
