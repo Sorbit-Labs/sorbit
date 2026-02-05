@@ -1,0 +1,655 @@
+/* ============================================
+   POST COMPOSER - AFRICA-OPTIMIZED
+   Mobile-first, WhatsApp-style, simple & clear
+   ============================================ */
+
+.post-composer {
+  width: 100%;
+  padding: var(--spacing-md);
+  padding-bottom: var(--spacing-3xl);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.post-composer__header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-tight);
+}
+
+.post-composer__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+/* ============================================
+   SECTION TITLES
+   ============================================ */
+
+.post-composer__section-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   PLATFORM SELECTOR - WhatsApp Style Toggles
+   ============================================ */
+
+.post-composer__platforms {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.post-composer__platform-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 64px;
+  position: relative;
+}
+
+.post-composer__platform-toggle:active {
+  transform: scale(0.98);
+}
+
+.post-composer__platform-toggle--active {
+  border-color: var(--platform-color);
+  background: color-mix(in srgb, var(--platform-color) 5%, var(--bg-primary));
+}
+
+.post-composer__platform-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.post-composer__platform-toggle--active .post-composer__platform-icon {
+  background: var(--platform-color);
+  color: white;
+}
+
+.post-composer__platform-toggle:not(.post-composer__platform-toggle--active) .post-composer__platform-icon {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+.post-composer__platform-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.post-composer__platform-name {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.post-composer__platform-check {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.post-composer__platform-toggle--active .post-composer__platform-check {
+  background: var(--platform-color);
+  color: white;
+}
+
+.post-composer__platform-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================
+   TEXT EDITOR
+   ============================================ */
+
+.post-composer__editor {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__textarea-wrapper {
+  position: relative;
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--border-light);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.post-composer__textarea-wrapper:focus-within {
+  border-color: var(--primary);
+}
+
+.post-composer__textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  padding-bottom: 50px;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  resize: none;
+  font-family: inherit;
+  line-height: var(--line-height-relaxed);
+}
+
+.post-composer__textarea:focus {
+  outline: none;
+}
+
+.post-composer__textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.post-composer__char-counter {
+  position: absolute;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.post-composer__char-counter--error {
+  color: var(--error);
+  background: var(--error-light);
+}
+
+.post-composer__char-limit {
+  font-size: var(--font-size-xs);
+  opacity: 0.7;
+}
+
+.post-composer__error-text {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--error);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* ============================================
+   MEDIA UPLOAD
+   ============================================ */
+
+.post-composer__media-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__media-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.post-composer__media-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.post-composer__media-item img,
+.post-composer__media-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-composer__media-remove {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.post-composer__media-remove:active {
+  transform: scale(0.9);
+  background: var(--error);
+}
+
+.post-composer__media-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+.post-composer__upload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border: 2px dashed var(--border-medium);
+  border-radius: var(--radius-lg);
+  color: var(--primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 56px;
+}
+
+.post-composer__upload-btn:active {
+  transform: scale(0.98);
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.post-composer__upload-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   SCHEDULE OPTION
+   ============================================ */
+
+.post-composer__schedule {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__schedule-toggle {
+  margin-bottom: var(--spacing-md);
+}
+
+.post-composer__toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 64px;
+}
+
+.post-composer__toggle-btn:active {
+  transform: scale(0.98);
+}
+
+.post-composer__toggle-btn--active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.post-composer__toggle-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.post-composer__toggle-btn--active .post-composer__toggle-icon {
+  background: var(--primary);
+  color: white;
+}
+
+.post-composer__toggle-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.post-composer__toggle-text {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-composer__toggle-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.post-composer__toggle-hint {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.post-composer__switch {
+  width: 48px;
+  height: 28px;
+  background: var(--border-medium);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.post-composer__toggle-btn--active .post-composer__switch {
+  background: var(--primary);
+}
+
+.post-composer__switch-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-composer__toggle-btn--active .post-composer__switch-slider {
+  transform: translateX(20px);
+}
+
+.post-composer__schedule-picker {
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-composer__datetime-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.post-composer__datetime-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.post-composer__actions {
+  margin-bottom: var(--spacing-xl);
+}
+
+.post-composer__post-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border: none;
+  border-radius: var(--radius-xl);
+  color: white;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-lg);
+  min-height: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-composer__post-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.post-composer__post-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.post-composer__post-btn:active {
+  transform: scale(0.98);
+}
+
+.post-composer__post-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.post-composer__post-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.post-composer__spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   HELPER INFO
+   ============================================ */
+
+.post-composer__info {
+  padding: var(--spacing-md);
+  background: var(--info-light);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--info);
+}
+
+.post-composer__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.post-composer__info-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--info);
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+
+@media (min-width: 480px) {
+  .post-composer__platform-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .post-composer__media-preview {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .post-composer {
+    padding: var(--spacing-xl);
+  }
+
+  .post-composer__title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .post-composer__platform-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .post-composer__media-preview {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-composer {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .post-composer__post-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .post-composer__upload-btn:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+  }
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+
+[data-theme="dark"] .post-composer__platform-toggle {
+  background: var(--bg-primary);
+  border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .post-composer__textarea-wrapper {
+  background: var(--bg-primary);
+  border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .post-composer__upload-btn {
+  background: var(--bg-primary);
+  border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .post-composer__toggle-btn {
+  background: var(--bg-primary);
+  border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .post-composer__schedule-picker {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .post-composer__datetime-input {
+  background: var(--bg-secondary);
+  border-color: var(--border-medium);
+  color-scheme: dark;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.post-composer__platform-toggle:focus-visible,
+.post-composer__textarea:focus-visible,
+.post-composer__upload-btn:focus-visible,
+.post-composer__toggle-btn:focus-visible,
+.post-composer__post-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   PERFORMANCE
+   ============================================ */
+
+.post-composer__platform-toggle,
+.post-composer__upload-btn,
+.post-composer__toggle-btn,
+.post-composer__post-btn {
+  will-change: transform;
+  backface-visibility: hidden;
+}
