@@ -35,6 +35,7 @@
   --bg-secondary: #F8F9FA;
   --bg-tertiary: #F1F3F5;
   --bg-hover: #E9ECEF;
+  --bg-glass: rgba(255, 255, 255, 0.7);
   
   /* Text Colors - High Contrast for Outdoor Viewing */
   --text-primary: #1A1D1F;
@@ -46,6 +47,7 @@
   --border-light: #E9ECEF;
   --border-medium: #DEE2E6;
   --border-dark: #CED4DA;
+  --border-glass: rgba(255, 255, 255, 0.6);
   
   /* Social Platform Colors */
   --facebook: #1877F2;
@@ -116,6 +118,14 @@
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ============================================
+     BLUR SCALE - Glassmorphism
+     ============================================ */
+
+  --blur-sm: 8px;
+  --blur-md: 14px;
+  --blur-lg: 24px;
   
   /* ============================================
      ELEVATION SYSTEM
@@ -172,6 +182,7 @@
   --bg-secondary: #15202B;
   --bg-tertiary: #1C2938;
   --bg-hover: #253341;
+  --bg-glass: rgba(21, 32, 43, 0.7);
   
   /* Text Colors - Softer for Night Viewing */
   --text-primary: #E7E9EA;
@@ -183,6 +194,7 @@
   --border-light: #253341;
   --border-medium: #2F3D4D;
   --border-dark: #3D4F5F;
+  --border-glass: rgba(255, 255, 255, 0.08);
   
   /* Adjusted Primary for Dark Mode */
   --primary: #1A8FFF;

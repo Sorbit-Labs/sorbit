@@ -32,6 +32,17 @@
   animation: floatIn 1s ease-out;
 }
 
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .login-page__theme-toggle:hover {
   transform: scale(1.15) rotate(180deg);
   box-shadow: var(--elevation-4);
@@ -482,11 +493,24 @@
   height: 300px;
 }
 
-.login-page__social-btn svg {
+.login-page__social-btn svg,
+.login-page__social-icon {
   width: 20px;
   height: 20px;
   position: relative;
   z-index: 1;
+}
+
+.login-page__social-icon--google {
+  color: #4285F4;
+}
+
+.login-page__social-icon--facebook {
+  color: var(--facebook);
+}
+
+.login-page__social-icon--twitter {
+  color: var(--twitter);
 }
 
 .login-page__social-btn span {

@@ -583,11 +583,24 @@
   height: 300px;
 }
 
-.register-page__social-btn svg {
+.register-page__social-btn svg,
+.register-page__social-icon {
   width: 20px;
   height: 20px;
   position: relative;
   z-index: 1;
+}
+
+.register-page__social-icon--google {
+  color: #4285F4;
+}
+
+.register-page__social-icon--facebook {
+  color: var(--facebook);
+}
+
+.register-page__social-icon--twitter {
+  color: var(--twitter);
 }
 
 .register-page__social-btn span {
